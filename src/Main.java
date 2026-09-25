@@ -109,15 +109,23 @@ public class Main {
 //        logger.error("Connection failed");
 
         // ===== Task 9: Two-Way Speed Adapter =====
-        TwoWaySpeedAdapter speedAdapter = new TwoWaySpeedAdapter();
+//        TwoWaySpeedAdapter speedAdapter = new TwoWaySpeedAdapter();
+//
+//        speedAdapter.setSpeedMph(60);
+//        System.out.println("60 mph in km/h: " + speedAdapter.getSpeedKmh());
+//
+//        speedAdapter.setSpeedKmh(100);
+//        System.out.println("100 km/h in mph: " + speedAdapter.getSpeedMph());
 
-        speedAdapter.setSpeedMph(60);
-        System.out.println("60 mph in km/h: " + speedAdapter.getSpeedKmh());
+        // ===== Task 10: Flattened Config Adapter =====
+        NestedConfigStore nestedConfigStore = new NestedConfigStore();
+        IConfiguration configuration = new FlattenedConfigAdapter(nestedConfigStore);
 
-        speedAdapter.setSpeedKmh(100);
-        System.out.println("100 km/h in mph: " + speedAdapter.getSpeedMph());
-
-
+        System.out.println("database.host = " + configuration.getString("database.host"));
+        System.out.println("database.port = " + configuration.getString("database.port"));
+        System.out.println("server.name = " + configuration.getString("server.name"));
+        System.out.println("missing.key = " + configuration.getString("missing.key"));
+        System.out.println("database.host.extra = " + configuration.getString("database.host.extra"));
 
 
     }
