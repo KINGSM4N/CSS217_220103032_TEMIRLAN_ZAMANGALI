@@ -128,11 +128,22 @@ public class Main {
 //        System.out.println("database.host.extra = " + configuration.getString("database.host.extra"));
 
         // ===== Task 11: Box Adapter =====
-        MetricBox metricBox = new MetricBox(10.0, 20.0);
-        IImperialBox imperialBox = new BoxAdapter(metricBox);
+//        MetricBox metricBox = new MetricBox(10.0, 20.0);
+//        IImperialBox imperialBox = new BoxAdapter(metricBox);
+//
+//        System.out.println("Width inches: " + imperialBox.getWidthInches());
+//        System.out.println("Height inches: " + imperialBox.getHeightInches());
+//        System.out.println("Area sq inches: " + imperialBox.getAreaSquareInches());
 
-        System.out.println("Width inches: " + imperialBox.getWidthInches());
-        System.out.println("Height inches: " + imperialBox.getHeightInches());
-        System.out.println("Area sq inches: " + imperialBox.getAreaSquareInches());
+        // ===== Task 12: Authenticator Adapter =====
+        LegacyAuthService legacyAuthService = new LegacyAuthService();
+        IModernAuthenticator authenticator = new AuthenticatorAdapter(legacyAuthService);
+
+        System.out.println("Login admin/password: " + authenticator.login("admin", "password"));
+        System.out.println("Login admin/wrong: " + authenticator.login("admin", "wrongpassword"));
+        System.out.println("Login guest/password: " + authenticator.login("guest", "password"));
+
+
+
     }
 }
