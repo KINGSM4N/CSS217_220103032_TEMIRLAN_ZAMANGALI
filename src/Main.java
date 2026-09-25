@@ -91,14 +91,26 @@ public class Main {
 //            System.out.println("Caught: " + e.getMessage());
 //        }
 
-        // ===== Task 7: Inventory Iterator Adapter =====
-        LegacyInventory legacyInventory = new LegacyInventory();
-        IInventoryIteratorProvider iteratorProvider = new InventoryIteratorAdapter(legacyInventory);
+//        // ===== Task 7: Inventory Iterator Adapter =====
+//        LegacyInventory legacyInventory = new LegacyInventory();
+//        IInventoryIteratorProvider iteratorProvider = new InventoryIteratorAdapter(legacyInventory);
+//
+//        Iterator<String> inventoryIterator = iteratorProvider.getInventoryIterator();
+//        while (inventoryIterator.hasNext()) {
+//            System.out.println("Item: " + inventoryIterator.next());
+//        }
 
-        Iterator<String> inventoryIterator = iteratorProvider.getInventoryIterator();
-        while (inventoryIterator.hasNext()) {
-            System.out.println("Item: " + inventoryIterator.next());
-        }
+        // ===== Task 8: Telemetry Logger Adapter =====
+        EnterpriseTelemetryLogger enterpriseTelemetryLogger = new EnterpriseTelemetryLogger();
+        ISimpleLogger logger = new TelemetryLoggerAdapter(enterpriseTelemetryLogger, "MyApp");
+
+        logger.info("Application started");
+        logger.warn("Low disk space");
+        logger.error("Connection failed");
+
+
+
+
 
 
     }
