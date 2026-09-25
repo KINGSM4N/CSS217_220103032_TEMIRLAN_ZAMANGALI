@@ -60,14 +60,34 @@ public class Main {
 //        LocalDate currentDate = calendar.getCurrentDate();
 //        System.out.println("Current date (UTC): " + currentDate);
 
-        // ===== Task 5: CSV User Adapter =====
-        LegacyCsvUserStore legacyCsvUserStore = new LegacyCsvUserStore();
-        IUserSource userSource = new CsvUserAdapter(legacyCsvUserStore);
+//        // ===== Task 5: CSV User Adapter =====
+//        LegacyCsvUserStore legacyCsvUserStore = new LegacyCsvUserStore();
+//        IUserSource userSource = new CsvUserAdapter(legacyCsvUserStore);
+//
+//        UserProfile user = userSource.getNextUser();
+//        System.out.println("User: " + user);
 
-        UserProfile user = userSource.getNextUser();
-        System.out.println("User: " + user);
+        // ===== Task 6: Database Adapter =====
+        LegacyDatabaseConnection legacyDatabaseConnection = new LegacyDatabaseConnection();
+        IRepository repository = new DatabaseAdapter(legacyDatabaseConnection);
 
+        try {
+            System.out.println("Record: " + repository.findById(1));
+        } catch (RecordNotFoundException | DatabaseLockedException e) {
+            System.out.println("Caught: " + e.getMessage());
+        }
 
+        try {
+            repository.findById(404);
+        } catch (RecordNotFoundException | DatabaseLockedException e) {
+            System.out.println("Caught: " + e.getMessage());
+        }
+
+        try {
+            repository.findById(500);
+        } catch (RecordNotFoundException | DatabaseLockedException e) {
+            System.out.println("Caught: " + e.getMessage());
+        }
 
 
 
