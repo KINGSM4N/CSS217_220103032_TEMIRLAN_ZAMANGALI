@@ -1,5 +1,7 @@
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Iterator;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -67,29 +69,36 @@ public class Main {
 //        UserProfile user = userSource.getNextUser();
 //        System.out.println("User: " + user);
 
-        // ===== Task 6: Database Adapter =====
-        LegacyDatabaseConnection legacyDatabaseConnection = new LegacyDatabaseConnection();
-        IRepository repository = new DatabaseAdapter(legacyDatabaseConnection);
+//        // ===== Task 6: Database Adapter =====
+//        LegacyDatabaseConnection legacyDatabaseConnection = new LegacyDatabaseConnection();
+//        IRepository repository = new DatabaseAdapter(legacyDatabaseConnection);
+//
+//        try {
+//            System.out.println("Record: " + repository.findById(1));
+//        } catch (RecordNotFoundException | DatabaseLockedException e) {
+//            System.out.println("Caught: " + e.getMessage());
+//        }
+//
+//        try {
+//            repository.findById(404);
+//        } catch (RecordNotFoundException | DatabaseLockedException e) {
+//            System.out.println("Caught: " + e.getMessage());
+//        }
+//
+//        try {
+//            repository.findById(500);
+//        } catch (RecordNotFoundException | DatabaseLockedException e) {
+//            System.out.println("Caught: " + e.getMessage());
+//        }
 
-        try {
-            System.out.println("Record: " + repository.findById(1));
-        } catch (RecordNotFoundException | DatabaseLockedException e) {
-            System.out.println("Caught: " + e.getMessage());
+        // ===== Task 7: Inventory Iterator Adapter =====
+        LegacyInventory legacyInventory = new LegacyInventory();
+        IInventoryIteratorProvider iteratorProvider = new InventoryIteratorAdapter(legacyInventory);
+
+        Iterator<String> inventoryIterator = iteratorProvider.getInventoryIterator();
+        while (inventoryIterator.hasNext()) {
+            System.out.println("Item: " + inventoryIterator.next());
         }
-
-        try {
-            repository.findById(404);
-        } catch (RecordNotFoundException | DatabaseLockedException e) {
-            System.out.println("Caught: " + e.getMessage());
-        }
-
-        try {
-            repository.findById(500);
-        } catch (RecordNotFoundException | DatabaseLockedException e) {
-            System.out.println("Caught: " + e.getMessage());
-        }
-
-
 
 
     }
