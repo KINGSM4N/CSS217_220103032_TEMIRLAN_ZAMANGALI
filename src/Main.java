@@ -118,15 +118,21 @@ public class Main {
 //        System.out.println("100 km/h in mph: " + speedAdapter.getSpeedMph());
 
         // ===== Task 10: Flattened Config Adapter =====
-        NestedConfigStore nestedConfigStore = new NestedConfigStore();
-        IConfiguration configuration = new FlattenedConfigAdapter(nestedConfigStore);
+//        NestedConfigStore nestedConfigStore = new NestedConfigStore();
+//        IConfiguration configuration = new FlattenedConfigAdapter(nestedConfigStore);
+//
+//        System.out.println("database.host = " + configuration.getString("database.host"));
+//        System.out.println("database.port = " + configuration.getString("database.port"));
+//        System.out.println("server.name = " + configuration.getString("server.name"));
+//        System.out.println("missing.key = " + configuration.getString("missing.key"));
+//        System.out.println("database.host.extra = " + configuration.getString("database.host.extra"));
 
-        System.out.println("database.host = " + configuration.getString("database.host"));
-        System.out.println("database.port = " + configuration.getString("database.port"));
-        System.out.println("server.name = " + configuration.getString("server.name"));
-        System.out.println("missing.key = " + configuration.getString("missing.key"));
-        System.out.println("database.host.extra = " + configuration.getString("database.host.extra"));
+        // ===== Task 11: Box Adapter =====
+        MetricBox metricBox = new MetricBox(10.0, 20.0);
+        IImperialBox imperialBox = new BoxAdapter(metricBox);
 
-
+        System.out.println("Width inches: " + imperialBox.getWidthInches());
+        System.out.println("Height inches: " + imperialBox.getHeightInches());
+        System.out.println("Area sq inches: " + imperialBox.getAreaSquareInches());
     }
 }
