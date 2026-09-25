@@ -101,14 +101,21 @@ public class Main {
 //        }
 
         // ===== Task 8: Telemetry Logger Adapter =====
-        EnterpriseTelemetryLogger enterpriseTelemetryLogger = new EnterpriseTelemetryLogger();
-        ISimpleLogger logger = new TelemetryLoggerAdapter(enterpriseTelemetryLogger, "MyApp");
+//        EnterpriseTelemetryLogger enterpriseTelemetryLogger = new EnterpriseTelemetryLogger();
+//        ISimpleLogger logger = new TelemetryLoggerAdapter(enterpriseTelemetryLogger, "MyApp");
+//
+//        logger.info("Application started");
+//        logger.warn("Low disk space");
+//        logger.error("Connection failed");
 
-        logger.info("Application started");
-        logger.warn("Low disk space");
-        logger.error("Connection failed");
+        // ===== Task 9: Two-Way Speed Adapter =====
+        TwoWaySpeedAdapter speedAdapter = new TwoWaySpeedAdapter();
 
+        speedAdapter.setSpeedMph(60);
+        System.out.println("60 mph in km/h: " + speedAdapter.getSpeedKmh());
 
+        speedAdapter.setSpeedKmh(100);
+        System.out.println("100 km/h in mph: " + speedAdapter.getSpeedMph());
 
 
 
